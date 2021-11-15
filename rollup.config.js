@@ -4,7 +4,7 @@ export default {
     {
       file: 'dist/plugin.js',
       format: 'iife',
-      name: 'capacitorCapacitorFloash',
+      name: 'capacitorCapacitorFlash',
       globals: {
         '@capacitor/core': 'capacitorExports',
       },

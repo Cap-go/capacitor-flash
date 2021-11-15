@@ -1,13 +1,13 @@
 import { registerPlugin } from '@capacitor/core';
 
-import type { CapacitorFloashPlugin } from './definitions';
+import type { CapacitorFlashPlugin } from './definitions';
 
-const CapacitorFloash = registerPlugin<CapacitorFloashPlugin>(
-  'CapacitorFloash',
+const CapacitorFlash = registerPlugin<CapacitorFlashPlugin>(
+  'CapacitorFlash',
   {
-    web: () => import('./web').then(m => new m.CapacitorFloashWeb()),
+    web: () => import('./web').then(m => new m.CapacitorFlashWeb()),
   },
 );
 
 export * from './definitions';
-export { CapacitorFloash };
+export { CapacitorFlash };

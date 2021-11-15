@@ -1,12 +1,25 @@
 import { WebPlugin } from '@capacitor/core';
 
-import type { CapacitorFloashPlugin } from './definitions';
+import type { CapacitorFlashPlugin } from './definitions';
 
-export class CapacitorFloashWeb
+export class CapacitorFlashWeb
   extends WebPlugin
-  implements CapacitorFloashPlugin {
-  async echo(options: { value: string }): Promise<{ value: string }> {
-    console.log('ECHO', options);
-    return options;
-  }
+  implements CapacitorFlashPlugin {
+
+  isAvailable(): Promise<{ value: boolean }> {
+    throw new Error("Method not implemented.");
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  switchOn(_options: { intensity?: number }): Promise<void>{
+      throw new Error("Method not implemented.");
+    };
+
+  switchOff(): Promise<void>{
+      throw new Error("Method not implemented.");
+    };
+
+  isSwitchedOn(): Promise<{ value: boolean }>{
+      throw new Error("Method not implemented.");
+    };
 }
