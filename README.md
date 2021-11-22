@@ -26,12 +26,12 @@ npx cap sync
 ### isAvailable()
 
 ```typescript
-isAvailable() => any
+isAvailable() => Promise<{ value: boolean; }>
 ```
 
 Checks if flashlight is available
 
-**Returns:** <code>any</code>
+**Returns:** <code>Promise&lt;{ value: boolean; }&gt;</code>
 
 --------------------
 
@@ -39,7 +39,7 @@ Checks if flashlight is available
 ### switchOn(...)
 
 ```typescript
-switchOn(options: { intensity?: number; }) => any
+switchOn(options: { intensity?: number; }) => Promise<void>
 ```
 
 Turns the flashlight on
@@ -48,20 +48,16 @@ Turns the flashlight on
 | ------------- | ------------------------------------ |
 | **`options`** | <code>{ intensity?: number; }</code> |
 
-**Returns:** <code>any</code>
-
 --------------------
 
 
 ### switchOff()
 
 ```typescript
-switchOff() => any
+switchOff() => Promise<void>
 ```
 
 Turns the flashlight off
-
-**Returns:** <code>any</code>
 
 --------------------
 
@@ -69,12 +65,12 @@ Turns the flashlight off
 ### isSwitchedOn()
 
 ```typescript
-isSwitchedOn() => any
+isSwitchedOn() => Promise<{ value: boolean; }>
 ```
 
 Checks if the flashlight is turned on or off
 
-**Returns:** <code>any</code>
+**Returns:** <code>Promise&lt;{ value: boolean; }&gt;</code>
 
 --------------------
 
