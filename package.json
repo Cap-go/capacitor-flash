@@ -1,6 +1,6 @@
 {
   "name": "capacitor-flash",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Switch the Flashlight / Torch of your device.",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -24,6 +24,9 @@
   },
   "keywords": [
     "capacitor",
+    "flashlight",
+    "flash",
+    "light",
     "plugin",
     "native"
   ],
@@ -46,7 +49,7 @@
   "devDependencies": {
     "@capacitor/android": "^3.0.0",
     "@capacitor/core": "^3.0.0",
-    "@capacitor/docgen": "^0.0.10",
+    "@capacitor/docgen": "0.0.18",
     "@capacitor/ios": "^3.0.0",
     "@ionic/eslint-config": "^0.3.0",
     "@ionic/prettier-config": "^1.0.1",
