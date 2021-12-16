@@ -18,7 +18,7 @@ public class CapacitorFlashPlugin: CAPPlugin {
     @objc func switchOn(_ call: CAPPluginCall) {
         let intensity = call.getFloat("intensity") ?? 1.0
         call.resolve([
-            "value": implementation.switchOn(intensity)
+            "value": implementation.switchOn(intensity: intensity)
         ])
     }
     
