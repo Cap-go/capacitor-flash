@@ -24,7 +24,7 @@ public class CapacitorFlashPlugin: CAPPlugin {
     
     @objc func switchOff(_ call: CAPPluginCall) {
         call.resolve([
-            "value": implementation.switchOff(intensity)
+            "value": implementation.switchOff()
         ])
     }
     
