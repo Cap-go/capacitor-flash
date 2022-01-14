@@ -1,6 +1,6 @@
 {
   "name": "capacitor-flash",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Switch the Flashlight / Torch of your device.",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",

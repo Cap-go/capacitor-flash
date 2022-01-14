@@ -9,6 +9,16 @@ npm install capacitor-flash
 npx cap sync
 ```
 
+## Android
+
+1. Declare permissions in your app's `AndroidManifest.xml` file
+
+    ```xml
+    <!-- Permissions : Allows access to flashlight -->
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.FLASHLIGHT"/>
+    ```
+
 ## API
 
 <docgen-index>
