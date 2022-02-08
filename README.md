@@ -9,6 +9,10 @@ npm install capacitor-flash
 npx cap sync
 ```
 
+## iOS
+
+Works out of the box
+
 ## Android
 
 1. Declare permissions in your app's `AndroidManifest.xml` file
