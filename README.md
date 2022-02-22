@@ -17,11 +17,14 @@ Works out of the box
 
 1. Declare permissions in your app's `AndroidManifest.xml` file
 
-    ```xml
-    <!-- Permissions : Allows access to flashlight -->
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.FLASHLIGHT"/>
-    ```
+```xml
+<!-- Permissions: Allows access to flashlight -->
+<uses-permission android:name="android.permission.CAMERA" android:maxSdkVersion="23" />
+<uses-permission android:name="android.permission.FLASHLIGHT" />
+
+<!-- Actual Hardware Features Used-->
+<uses-feature android:name="android.hardware.camera.flash" android:required="true" />
+```
 
 ## API
 
