@@ -33,4 +33,10 @@ public class CapacitorFlashPlugin: CAPPlugin {
             "value": implementation.isSwitchedOn()
         ])
     }
+
+    @objc func toggle(_ call: CAPPluginCall) {
+        call.resolve([
+            "value": implementation.toggle()
+        ])
+    }
 }

@@ -7,6 +7,7 @@ import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
 import com.getcapacitor.annotation.CapacitorPlugin;
 import com.getcapacitor.annotation.Permission;
+import com.getcapacitor.annotation.PermissionCallback;
 
 import android.Manifest;
 import android.content.Context;
@@ -48,24 +49,29 @@ public class CapacitorFlashPlugin extends Plugin {
         }
     }
 
+
     @PluginMethod
     public void isAvailable(PluginCall call) {
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.M && getPermissionState("camera") != PermissionState.GRANTED) {
+            requestPermissionForAlias("camera", call, "cameraPermsCallback");
+        } else {
+            getAvailibility(call);
+        }
+    }
+
+    @PermissionCallback
+    private void getAvailibility(PluginCall call) {
         JSObject ret = new JSObject();
         ret.put("value", false);
-        if (getPermissionState("camera") != PermissionState.GRANTED) {
-            this.checkPermissions(call);
-            return;
-        } else {
-            if (cameraManager != null) {
-                try {
-                    boolean flashAvailable = cameraManager
-                            .getCameraCharacteristics(cameraId)
-                            .get(CameraCharacteristics.FLASH_INFO_AVAILABLE);
-                    ret.put("value", flashAvailable);
-                } catch (CameraAccessException e) {
-                    e.printStackTrace();
-                    ret.put("value", false);
-                }
+        if (cameraManager != null) {
+            try {
+            boolean flashAvailable = cameraManager
+                .getCameraCharacteristics(cameraId)
+                .get(CameraCharacteristics.FLASH_INFO_AVAILABLE);
+            ret.put("value", flashAvailable);
+            } catch (CameraAccessException e) {
+            e.printStackTrace();
+            ret.put("value", false);
             }
         }
         call.resolve(ret);
@@ -116,6 +122,30 @@ public class CapacitorFlashPlugin extends Plugin {
         try {
             if (cameraManager != null) {
                 ret.put("value", isFlashStateOn);
+            } else {
+                ret.put("value", false);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            ret.put("value", false);
+        }
+        call.resolve(ret);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @PluginMethod
+    public void toggle(PluginCall call) {
+        JSObject ret = new JSObject();
+        try {
+            if (cameraManager != null) {
+                if (isFlashStateOn) {
+                    cameraManager.setTorchMode(cameraId, false);
+                    isFlashStateOn = false;
+                } else {
+                    cameraManager.setTorchMode(cameraId, true);
+                    isFlashStateOn = true;
+                }
+                ret.put("value", true);
             } else {
                 ret.put("value", false);
             }

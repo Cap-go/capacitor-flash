@@ -23,4 +23,10 @@ export interface CapacitorFlashPlugin {
    * @returns  {Promise<{ value: boolean }>} True of flaslight is turned on and false if not
    */
   isSwitchedOn(): Promise<{ value: boolean }>;
+
+  /**
+   * Toggle the flashlight
+   * @returns  {Promise<{ value: boolean }>} True if that worked and false if not
+   */
+  toggle(): Promise<{ value: boolean }>;
 }

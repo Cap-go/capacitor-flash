@@ -34,6 +34,7 @@ Works out of the box
 * [`switchOn(...)`](#switchon)
 * [`switchOff()`](#switchoff)
 * [`isSwitchedOn()`](#isswitchedon)
+* [`toggle()`](#toggle)
 
 </docgen-index>
 
@@ -86,6 +87,19 @@ isSwitchedOn() => Promise<{ value: boolean; }>
 ```
 
 Checks if the flashlight is turned on or off
+
+**Returns:** <code>Promise&lt;{ value: boolean; }&gt;</code>
+
+--------------------
+
+
+### toggle()
+
+```typescript
+toggle() => Promise<{ value: boolean; }>
+```
+
+Toggle the flashlight
 
 **Returns:** <code>Promise&lt;{ value: boolean; }&gt;</code>
 

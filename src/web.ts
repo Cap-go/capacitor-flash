@@ -22,4 +22,8 @@ export class CapacitorFlashWeb
   isSwitchedOn(): Promise<{ value: boolean }>{
       throw new Error("Method not implemented.");
     };
+
+  toggle(): Promise<{ value: boolean }>{
+      throw new Error("Method not implemented.");
+    };
 }
