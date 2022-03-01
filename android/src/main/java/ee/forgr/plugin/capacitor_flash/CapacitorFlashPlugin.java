@@ -19,141 +19,132 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 @CapacitorPlugin(
-        name = "CapacitorFlash",
-        permissions = {
-                @Permission(
-                        alias = "camera",
-                        strings = { Manifest.permission.CAMERA }
-                )
-        }
+  name = "CapacitorFlash",
+  permissions = {
+    @Permission(
+      alias = "camera",
+      strings = { Manifest.permission.CAMERA }
+    )
+  }
 )
 public class CapacitorFlashPlugin extends Plugin {
 
-    private String cameraId;
-    boolean isFlashStateOn = false;
+  private String cameraId;
+  boolean isFlashStateOn = false;
 
-    private CameraManager cameraManager;
+  private CameraManager cameraManager;
 
 
-    @Override
-    public void load() {
-        cameraManager = (CameraManager) this.bridge.getContext().getSystemService(Context.CAMERA_SERVICE);
-        try {
+  @Override
+  public void load() {
+    cameraManager = (CameraManager) this.bridge.getContext().getSystemService(Context.CAMERA_SERVICE);
+    try {
 
-            if (cameraManager != null) {
-                cameraId = cameraManager.getCameraIdList()[0];
-            }
+      if (cameraManager != null) {
+        cameraId = cameraManager.getCameraIdList()[0];
+      }
 
-        } catch (CameraAccessException e) {
-            e.printStackTrace();
-        }
+    } catch (CameraAccessException e) {
+      e.printStackTrace();
     }
+  }
 
 
-    @PluginMethod
-    public void isAvailable(PluginCall call) {
-        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.M && getPermissionState("camera") != PermissionState.GRANTED) {
-            requestPermissionForAlias("camera", call, "cameraPermsCallback");
-        } else {
-            getAvailibility(call);
-        }
+  @PluginMethod
+  public void isAvailable(PluginCall call) {
+    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.M && getPermissionState("camera") != PermissionState.GRANTED) {
+      requestPermissionForAlias("camera", call, "cameraPermsCallback");
+    } else {
+      getAvailibility(call);
     }
+  }
 
-    @PermissionCallback
-    private void getAvailibility(PluginCall call) {
-        JSObject ret = new JSObject();
-        ret.put("value", false);
-        if (cameraManager != null) {
-            try {
-            boolean flashAvailable = cameraManager
-                .getCameraCharacteristics(cameraId)
-                .get(CameraCharacteristics.FLASH_INFO_AVAILABLE);
-            ret.put("value", flashAvailable);
-            } catch (CameraAccessException e) {
-            e.printStackTrace();
-            ret.put("value", false);
-            }
-        }
-        call.resolve(ret);
+  @PermissionCallback
+  private void getAvailibility(PluginCall call) {
+    JSObject ret = new JSObject();
+    if (cameraManager == null) {
+      ret.put("value", false);
+      call.resolve(ret);
+      return;
     }
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    @PluginMethod
-    public void switchOn(PluginCall call) {
-        String value = call.getString("instensity");
-        JSObject ret = new JSObject();
-        try {
-            if (cameraManager != null) {
-                cameraManager.setTorchMode(cameraId, true);
-                isFlashStateOn = true;
-                ret.put("value", true);
-            } else {
-                ret.put("value", false);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            ret.put("value", false);
-        }
-
+    try {
+      boolean flashAvailable = cameraManager
+        .getCameraCharacteristics(cameraId)
+        .get(CameraCharacteristics.FLASH_INFO_AVAILABLE);
+      ret.put("value", flashAvailable);
+    } catch (CameraAccessException e) {
+      e.printStackTrace();
+      ret.put("value", false);
     }
+    call.resolve(ret);
+  }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    @PluginMethod
-    public void switchOff(PluginCall call) {
-        JSObject ret = new JSObject();
-        try {
-            if (cameraManager != null) {
-                cameraManager.setTorchMode(cameraId, false);
-                isFlashStateOn = false;
-                ret.put("value", true);
-            } else {
-                ret.put("value", false);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            ret.put("value", false);
-        }
-        call.resolve(ret);
+  @RequiresApi(api = Build.VERSION_CODES.M)
+  @PluginMethod
+  public void switchOn(PluginCall call) {
+    String value = call.getString("instensity"); // cannot be use in android
+    JSObject ret = new JSObject();
+    if (cameraManager == null) {
+      ret.put("value", false);
+      call.resolve(ret);
+      return;
     }
+    try {
+      cameraManager.setTorchMode(cameraId, true);
+      isFlashStateOn = true;
+      ret.put("value", true);
+    } catch (Exception e) {
+      e.printStackTrace();
+      ret.put("value", false);
+    }
+    call.resolve(ret);
+  }
 
-    @PluginMethod
-    public void isSwitchedOn(PluginCall call) {
-        JSObject ret = new JSObject();
-        try {
-            if (cameraManager != null) {
-                ret.put("value", isFlashStateOn);
-            } else {
-                ret.put("value", false);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            ret.put("value", false);
-        }
-        call.resolve(ret);
+  @RequiresApi(api = Build.VERSION_CODES.M)
+  @PluginMethod
+  public void switchOff(PluginCall call) {
+    JSObject ret = new JSObject();
+    if (cameraManager == null) {
+      ret.put("value", false);
+      call.resolve(ret);
+      return;
     }
+    try {
+      cameraManager.setTorchMode(cameraId, false);
+      isFlashStateOn = false;
+      ret.put("value", true);
+    } catch (Exception e) {
+      e.printStackTrace();
+      ret.put("value", false);
+    }
+    call.resolve(ret);
+  }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    @PluginMethod
-    public void toggle(PluginCall call) {
-        JSObject ret = new JSObject();
-        try {
-            if (cameraManager != null) {
-                if (isFlashStateOn) {
-                    cameraManager.setTorchMode(cameraId, false);
-                    isFlashStateOn = false;
-                } else {
-                    cameraManager.setTorchMode(cameraId, true);
-                    isFlashStateOn = true;
-                }
-                ret.put("value", true);
-            } else {
-                ret.put("value", false);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            ret.put("value", false);
-        }
-        call.resolve(ret);
+  @PluginMethod
+  public void isSwitchedOn(PluginCall call) {
+    JSObject ret = new JSObject();
+    ret.put("value", isFlashStateOn);
+    call.resolve(ret);
+  }
+
+  @RequiresApi(api = Build.VERSION_CODES.M)
+  @PluginMethod
+  public void toggle(PluginCall call) {
+    JSObject ret = new JSObject();
+    if (cameraManager == null) {
+      ret.put("value", false);
+      call.resolve(ret);
+      return;
     }
+    try {
+      isFlashStateOn = !isFlashStateOn;
+      cameraManager.setTorchMode(cameraId, isFlashStateOn);
+      ret.put("value", isFlashStateOn);
+    } catch (Exception e) {
+      e.printStackTrace();
+      ret.put("value", false);
+    }
+    call.resolve(ret);
+  }
 
 }
