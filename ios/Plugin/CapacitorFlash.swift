@@ -48,7 +48,7 @@ import AVFoundation
         else { return false }
 
         let device = AVCaptureDevice.default(for: AVMediaType.video)
-        return ((device?.torchMode) != nil)
+        return (device?.torchMode == AVCaptureDevice.TorchMode.on)
     }
 
     @objc public func toggle() -> Bool {
@@ -56,7 +56,7 @@ import AVFoundation
         else { return false }
 
         let device = AVCaptureDevice.default(for: AVMediaType.video)
-        if ((device?.torchMode) != nil) {
+        if (device?.torchMode == AVCaptureDevice.TorchMode.on) {
             return self.switchOff()
         } else {
             return self.switchOn()
