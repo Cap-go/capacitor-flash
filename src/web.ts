@@ -7,7 +7,7 @@ export class CapacitorFlashWeb
   implements CapacitorFlashPlugin {
 
   isAvailable(): Promise<{ value: boolean }> {
-    throw new Error("Method not implemented.");
+    return Promise.resolve({ value: false})
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
