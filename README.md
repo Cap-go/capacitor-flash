@@ -5,7 +5,7 @@ Switch the Flashlight / Torch of your device.
 ## Install
 
 ```bash
-npm install capacitor-flash
+npm install @capgo/capacitor-flash
 npx cap sync
 ```
 
