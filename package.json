@@ -11,7 +11,7 @@
     "android/build.gradle",
     "dist/",
     "ios/Plugin/",
-    "CapacitorFlash.podspec"
+    "CapgoCapacitorFlash.podspec"
   ],
   "author": "Martin Donadieu",
   "license": "MIT",
