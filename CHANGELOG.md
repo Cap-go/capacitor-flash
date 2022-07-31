@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.8](https://github.com/riderx/capacitor-flash/compare/v1.2.7...v1.2.8) (2022-07-31)
+
+
+### Bug Fixes
+
+* missign file in npm ([1af6298](https://github.com/riderx/capacitor-flash/commit/1af6298b2cc6a0e0891bd5cf08a0f0ced8e739fa))
+
 ### [1.2.7](https://github.com/riderx/capacitor-flash/compare/v1.2.6...v1.2.7) (2022-07-28)
 
 
