@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.15](https://github.com/riderx/capacitor-flash/compare/v1.2.14...v1.2.15) (2022-11-11)
+
+
+### Bug Fixes
+
+* build issue ios ([169d413](https://github.com/riderx/capacitor-flash/commit/169d4139ef37baa9813aca2832e8da6ad9378ad2))
+
 ### [1.2.14](https://github.com/riderx/capacitor-flash/compare/v1.2.13...v1.2.14) (2022-11-11)
 
 
