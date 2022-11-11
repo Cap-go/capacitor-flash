@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.12](https://github.com/riderx/capacitor-flash/compare/v1.2.11...v1.2.12) (2022-11-11)
+
+
+### Bug Fixes
+
+* add build ci step ([422080e](https://github.com/riderx/capacitor-flash/commit/422080e507ff702d5440f35d2c431a71f2786618))
+
 ### [1.2.11](https://github.com/riderx/capacitor-flash/compare/v1.2.10...v1.2.11) (2022-08-29)
 
 
