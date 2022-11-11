@@ -1,14 +1,14 @@
 import Foundation
 import AVFoundation
 
-@objc public class CapacitorFlash: NSObject {
+public class CapacitorFlash: NSObject {
 
-    @objc public func isAvailable() -> Bool {
+    public func isAvailable() -> Bool {
         let device = AVCaptureDevice.default(for: AVMediaType.video)
         return ((device?.hasTorch) != nil)
     }
 
-    @objc public func switchOn(intensity: Float = 1.0) -> Bool {
+    public func switchOn(intensity: Float = 1.0) -> Bool {
         guard self.isAvailable()
         else { return false }
 
@@ -26,7 +26,7 @@ import AVFoundation
         }
     }
 
-    @objc public func switchOff() -> Bool {
+    public func switchOff() -> Bool {
         guard self.isAvailable()
         else { return false }
 
@@ -43,7 +43,7 @@ import AVFoundation
         }
     }
 
-    @objc public func isSwitchedOn() -> Bool {
+    public func isSwitchedOn() -> Bool {
         guard self.isAvailable()
         else { return false }
 
@@ -51,7 +51,7 @@ import AVFoundation
         return (device?.torchMode == AVCaptureDevice.TorchMode.on)
     }
 
-    @objc public func toggle() -> Bool {
+    public func toggle() -> Bool {
         guard self.isAvailable()
         else { return false }
 
