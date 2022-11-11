@@ -9,25 +9,25 @@ import Capacitor
 public class CapacitorFlashPlugin: CAPPlugin {
     private let implementation = CapacitorFlash()
 
-    @objc func isAvailable(_ call: CAPPluginCall) {        
+    @objc func isAvailable(_ call: CAPPluginCall) {
         call.resolve([
             "value": implementation.isAvailable()
         ])
     }
-    
+
     @objc func switchOn(_ call: CAPPluginCall) {
         let intensity = call.getFloat("intensity") ?? 1.0
         call.resolve([
             "value": implementation.switchOn(intensity: intensity)
         ])
     }
-    
+
     @objc func switchOff(_ call: CAPPluginCall) {
         call.resolve([
             "value": implementation.switchOff()
         ])
     }
-    
+
     @objc func isSwitchedOn(_ call: CAPPluginCall) {
         call.resolve([
             "value": implementation.isSwitchedOn()
