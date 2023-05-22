@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.5](https://github.com/riderx/capacitor-flash/compare/v2.0.2...v2.0.5) (2023-05-22)
+
+
+### Bug Fixes
+
+* bump ([83c6424](https://github.com/riderx/capacitor-flash/commit/83c64247b26f8e5861023a0e0a5d0faafe338e78))
+* remove docgen api ([56f9921](https://github.com/riderx/capacitor-flash/commit/56f992125e652130a864a3b827014a6848802d3e))
+
 ### [2.0.4](https://github.com/riderx/capacitor-flash/compare/v2.0.2...v2.0.4) (2023-05-22)
 
 
