@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.2](https://github.com/riderx/capacitor-flash/compare/v2.0.1...v2.0.2) (2023-05-22)
+
+
+### Bug Fixes
+
+* test android ([1cea370](https://github.com/riderx/capacitor-flash/commit/1cea37096b2997dbe713279d8612dc6161b5a092))
+
 ### [2.0.1](https://github.com/riderx/capacitor-flash/compare/v2.0.0...v2.0.1) (2023-05-22)
 
 
