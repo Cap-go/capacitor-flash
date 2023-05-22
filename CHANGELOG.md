@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/riderx/capacitor-flash/compare/v1.2.27...v2.0.0) (2023-05-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* capacitor 5
+
+### Features
+
+* capacitor 5 ([53d3aff](https://github.com/riderx/capacitor-flash/commit/53d3affba5cf6f2212700ce009d453fd8b10c71b))
+
 ### [1.2.27](https://github.com/riderx/capacitor-flash/compare/v1.2.26...v1.2.27) (2023-01-04)
 
 ### [1.2.26](https://github.com/riderx/capacitor-flash/compare/v1.2.25...v1.2.26) (2023-01-02)
