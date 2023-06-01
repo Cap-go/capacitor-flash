@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.8](https://github.com/riderx/capacitor-flash/compare/v2.0.2...v2.0.8) (2023-06-01)
+
+
+### Bug Fixes
+
+* bump ([83c6424](https://github.com/riderx/capacitor-flash/commit/83c64247b26f8e5861023a0e0a5d0faafe338e78))
+* ci name ([4f1e445](https://github.com/riderx/capacitor-flash/commit/4f1e4454f311a6c7aa3ee3c817725a38a5003137))
+* **deps:** update dependency com.android.tools.build:gradle to v8.0.2 ([b879cae](https://github.com/riderx/capacitor-flash/commit/b879caed8f98de03e9afcd6ba10e39bdbbd8b76a))
+* remove docgen api ([56f9921](https://github.com/riderx/capacitor-flash/commit/56f992125e652130a864a3b827014a6848802d3e))
+
 ### [2.0.7](https://github.com/riderx/capacitor-flash/compare/v2.0.2...v2.0.7) (2023-05-29)
 
 
