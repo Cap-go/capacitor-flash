@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.11](https://github.com/riderx/capacitor-flash/compare/2.0.10...2.0.11) (2023-07-31)
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.android.tools.build:gradle to v8.1.0 ([6e12deb](https://github.com/riderx/capacitor-flash/commit/6e12deb549dc36e68110585f42b08105fff61321))
+
 ### [2.0.10](https://github.com/riderx/capacitor-flash/compare/2.0.9...2.0.10) (2023-07-17)
 
 ### [2.0.9](https://github.com/riderx/capacitor-flash/compare/2.0.8...2.0.9) (2023-07-03)
