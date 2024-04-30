@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0](https://github.com/riderx/capacitor-flash/compare/2.0.14...6.0.0) (2024-04-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to v6
+
+### Features
+
+* upgrade to v6 ([9513522](https://github.com/riderx/capacitor-flash/commit/9513522a95b9cc9ce70fe9f3ccff3efa57f22945))
+
+
+### Bug Fixes
+
+* pnpm ci ([360a7ff](https://github.com/riderx/capacitor-flash/commit/360a7ff8481def0782f478ff673d083712d2a873))
+
 ### [2.0.14](https://github.com/riderx/capacitor-flash/compare/2.0.13...2.0.14) (2023-10-09)
 
 ### [2.0.13](https://github.com/riderx/capacitor-flash/compare/2.0.12...2.0.13) (2023-08-28)
