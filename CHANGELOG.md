@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [6.0.1](https://github.com/riderx/capacitor-flash/compare/6.0.0...6.0.1) (2024-08-01)
+
+
+### Bug Fixes
+
+* IPad isAvailable check incorrect return value ([c741757](https://github.com/riderx/capacitor-flash/commit/c7417574ef027e959f8b132f21acf16c9d3f6ecf))
+
 ## [6.0.0](https://github.com/riderx/capacitor-flash/compare/2.0.14...6.0.0) (2024-04-30)
 
 
