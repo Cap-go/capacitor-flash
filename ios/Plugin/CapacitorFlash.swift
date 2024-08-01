@@ -5,7 +5,7 @@ public class CapacitorFlash: NSObject {
 
     public func isAvailable() -> Bool {
         let device = AVCaptureDevice.default(for: AVMediaType.video)
-        return ((device?.hasTorch) != nil)
+        return ((device?.hasTorch ?? false) && (device?.isTorchAvailable ?? false))
     }
 
     public func switchOn(intensity: Float = 1.0) -> Bool {
