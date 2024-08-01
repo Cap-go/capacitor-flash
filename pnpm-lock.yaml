@@ -27,8 +27,8 @@ importers:
         specifier: ^0.3.0
         version: 0.3.0(eslint@8.57.0)(typescript@5.5.4)
       '@ionic/prettier-config':
-        specifier: ^3.0.0
-        version: 3.1.0(prettier@2.8.8)
+        specifier: ^4.0.0
+        version: 4.0.0(prettier@2.8.8)
       '@ionic/swiftlint-config':
         specifier: ^1.1.2
         version: 1.1.2
@@ -158,8 +158,8 @@ packages:
     peerDependencies:
       eslint: '>=7'
 
-  '@ionic/prettier-config@3.1.0':
-    resolution: {integrity: sha512-5cQ9qy9G0JDcIfUSP03EyX9ReEHK0mD34anvc2eCNpcca8GbY/wB0QS125FBkmV2DhDc5BvQSSM6VWZSGkxDJQ==}
+  '@ionic/prettier-config@4.0.0':
+    resolution: {integrity: sha512-0DqL6CggVdgeJAWOLPUT73rF1VD5p0tVlCpC5GXz5vTIUBxNwsJ5085Q7wXjKiE5Odx3aOHGTcuRWCawFsLFag==}
     peerDependencies:
       prettier: ^2.4.0 || ^3.0.0
 
@@ -1712,7 +1712,7 @@ snapshots:
       - supports-color
       - typescript
 
-  '@ionic/prettier-config@3.1.0(prettier@2.8.8)':
+  '@ionic/prettier-config@4.0.0(prettier@2.8.8)':
     dependencies:
       prettier: 2.8.8
 
