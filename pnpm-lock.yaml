@@ -28,7 +28,7 @@ importers:
         version: 0.3.0(eslint@8.57.1)(typescript@5.5.4)
       '@ionic/prettier-config':
         specifier: ^3.0.0
-        version: 3.1.0(prettier@2.8.8)
+        version: 3.1.0(prettier@3.2.5)
       '@ionic/swiftlint-config':
         specifier: ^1.1.2
         version: 1.1.2
@@ -48,8 +48,8 @@ importers:
         specifier: ^8.0.3
         version: 8.0.3
       prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
+        specifier: ^3.0.0
+        version: 3.2.5
       prettier-plugin-java:
         specifier: ^2.1.0
         version: 2.6.5
@@ -1269,11 +1269,6 @@ packages:
   prettier-plugin-java@2.6.5:
     resolution: {integrity: sha512-2RkPNXyYpP5dRhr04pz45n+e5LXwYWTh1JXrztiCkZTGGokIGYrfwUuGa8csnDoGbP6CDPgVm8zZSIm/9I0SRQ==}
 
-  prettier@2.8.8:
-    resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
-    engines: {node: '>=10.13.0'}
-    hasBin: true
-
   prettier@3.2.5:
     resolution: {integrity: sha512-3/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAnuLBv6UeAULtrhT/F4A==}
     engines: {node: '>=14'}
@@ -1732,9 +1727,9 @@ snapshots:
       - supports-color
       - typescript
 
-  '@ionic/prettier-config@3.1.0(prettier@2.8.8)':
+  '@ionic/prettier-config@3.1.0(prettier@3.2.5)':
     dependencies:
-      prettier: 2.8.8
+      prettier: 3.2.5
 
   '@ionic/swiftlint-config@1.1.2': {}
 
@@ -3072,8 +3067,6 @@ snapshots:
       java-parser: 2.3.2
       lodash: 4.17.21
       prettier: 3.2.5
-
-  prettier@2.8.8: {}
 
   prettier@3.2.5: {}
 
