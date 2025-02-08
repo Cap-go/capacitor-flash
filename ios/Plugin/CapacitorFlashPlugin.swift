@@ -7,6 +7,16 @@ import Capacitor
  */
 @objc(CapacitorFlashPlugin)
 public class CapacitorFlashPlugin: CAPPlugin {
+    public let identifier = "CapacitorFlashPlugin"
+    public let jsName = "CapacitorFlash"
+    public let pluginMethods: [CAPPluginMethod] = [
+        CAPPluginMethod(name: "isAvailable", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "switchOn", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "switchOff", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "isSwitchedOn", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "toggle", returnType: CAPPluginReturnPromise)
+    ]
+
     private let implementation = CapacitorFlash()
 
     @objc func isAvailable(_ call: CAPPluginCall) {
