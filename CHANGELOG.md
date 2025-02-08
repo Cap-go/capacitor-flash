@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.0.1](https://github.com/Cap-go/capacitor-flash/compare/6.0.7...7.0.1) (2025-02-08)
+
+
+### Bug Fixes
+
+* CICD ([4157955](https://github.com/Cap-go/capacitor-flash/commit/41579556d90518955ea685798afa2803f2be5026))
+
 ### [6.0.7](https://github.com/riderx/capacitor-flash/compare/6.0.6...6.0.7) (2024-12-09)
 
 ### [6.0.6](https://github.com/riderx/capacitor-flash/compare/6.0.5...6.0.6) (2024-12-09)
