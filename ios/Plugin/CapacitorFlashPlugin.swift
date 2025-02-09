@@ -6,7 +6,7 @@ import Capacitor
  * here: https://capacitorjs.com/docs/plugins/ios
  */
 @objc(CapacitorFlashPlugin)
-public class CapacitorFlashPlugin: CAPPlugin {
+public class CapacitorFlashPlugin: CAPPlugin, CAPBridgedPlugin {
     public let identifier = "CapacitorFlashPlugin"
     public let jsName = "CapacitorFlash"
     public let pluginMethods: [CAPPluginMethod] = [
