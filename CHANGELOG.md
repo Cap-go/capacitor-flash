@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.0.2](https://github.com/Cap-go/capacitor-flash/compare/7.0.1...7.0.2) (2025-02-09)
+
+
+### Bug Fixes
+
+* missing class ([fd04c2a](https://github.com/Cap-go/capacitor-flash/commit/fd04c2a38db33fea53dfc15e43cbf1ef60f20fb8))
+
 ### [7.0.1](https://github.com/Cap-go/capacitor-flash/compare/6.0.7...7.0.1) (2025-02-08)
 
 
