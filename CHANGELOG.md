@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.0.4](https://github.com/Cap-go/capacitor-flash/compare/7.0.3...7.0.4) (2025-03-03)
+
 ### [7.0.3](https://github.com/Cap-go/capacitor-flash/compare/7.0.2...7.0.3) (2025-02-10)
 
 ### [7.0.2](https://github.com/Cap-go/capacitor-flash/compare/7.0.1...7.0.2) (2025-02-09)
