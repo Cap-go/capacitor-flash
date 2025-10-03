@@ -24,7 +24,6 @@ Works out of the box
 
 ```xml
 <!-- Permissions: Allows access to flashlight -->
-<uses-permission android:name="android.permission.CAMERA" android:maxSdkVersion="23" />
 <uses-permission android:name="android.permission.FLASHLIGHT" />
 
 <!-- Actual Hardware Features Used-->

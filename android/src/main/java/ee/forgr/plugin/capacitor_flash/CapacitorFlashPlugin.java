@@ -1,26 +1,18 @@
 package ee.forgr.plugin.capacitor_flash;
 
-import android.Manifest;
 import android.content.Context;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraManager;
-import android.os.Build;
-import androidx.annotation.RequiresApi;
 import com.getcapacitor.JSObject;
-import com.getcapacitor.PermissionState;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
 import com.getcapacitor.annotation.CapacitorPlugin;
-import com.getcapacitor.annotation.Permission;
 import com.getcapacitor.annotation.PermissionCallback;
 
 @CapacitorPlugin(
-  name = "CapacitorFlash",
-  permissions = {
-    @Permission(alias = "camera", strings = { Manifest.permission.CAMERA }),
-  }
+  name = "CapacitorFlash"
 )
 public class CapacitorFlashPlugin extends Plugin {
 
@@ -44,14 +36,7 @@ public class CapacitorFlashPlugin extends Plugin {
 
   @PluginMethod
   public void isAvailable(PluginCall call) {
-    if (
-      Build.VERSION.SDK_INT <= Build.VERSION_CODES.M &&
-      getPermissionState("camera") != PermissionState.GRANTED
-    ) {
-      requestPermissionForAlias("camera", call, "cameraPermsCallback");
-    } else {
-      getAvailibility(call);
-    }
+    getAvailibility(call);
   }
 
   @PermissionCallback
@@ -74,7 +59,6 @@ public class CapacitorFlashPlugin extends Plugin {
     call.resolve(ret);
   }
 
-  @RequiresApi(api = Build.VERSION_CODES.M)
   @PluginMethod
   public void switchOn(PluginCall call) {
     String value = call.getString("instensity"); // cannot be use in android
@@ -95,7 +79,6 @@ public class CapacitorFlashPlugin extends Plugin {
     call.resolve(ret);
   }
 
-  @RequiresApi(api = Build.VERSION_CODES.M)
   @PluginMethod
   public void switchOff(PluginCall call) {
     JSObject ret = new JSObject();
@@ -122,7 +105,6 @@ public class CapacitorFlashPlugin extends Plugin {
     call.resolve(ret);
   }
 
-  @RequiresApi(api = Build.VERSION_CODES.M)
   @PluginMethod
   public void toggle(PluginCall call) {
     JSObject ret = new JSObject();
