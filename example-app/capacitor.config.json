@@ -1,0 +1,10 @@
+{
+  "appId": "com.example.capgo.capacitor.flash",
+  "appName": "@capgo/capacitor-flash example",
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchAutoHide": false
+    }
+  }
+}
