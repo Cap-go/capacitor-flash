@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [7.0.12](https://github.com/Cap-go/capacitor-flash/compare/7.0.11...7.0.12) (2025-10-09)
+
+
+### Bug Fixes
+
+* switch to ios new arch ([4b118a4](https://github.com/Cap-go/capacitor-flash/commit/4b118a413294bb7c086751145167978d9091c651))
+
 ## [7.0.11](https://github.com/Cap-go/capacitor-flash/compare/7.0.10...7.0.11) (2025-10-08)
 
 ## [7.0.10](https://github.com/Cap-go/capacitor-flash/compare/7.0.9...7.0.10) (2025-10-08)
