@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [7.0.18](https://github.com/Cap-go/capacitor-flash/compare/7.0.17...7.0.18) (2025-10-15)
+
+
+### Bug Fixes
+
+* lock and lint ([5bc5740](https://github.com/Cap-go/capacitor-flash/commit/5bc5740188dce5149f672ceec4a7e962cf8df285))
+
 ## [7.0.17](https://github.com/Cap-go/capacitor-flash/compare/7.0.16...7.0.17) (2025-10-15)
 
 
