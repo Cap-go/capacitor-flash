@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [7.1.1](https://github.com/Cap-go/capacitor-flash/compare/7.1.0...7.1.1) (2025-10-23)
+
+
+### Bug Fixes
+
+* remove footer in discord ([a2f0c38](https://github.com/Cap-go/capacitor-flash/commit/a2f0c38fe522b92cdee780d6aa898800dd9264a9))
+* update Discord release notification username to include repository name ([79de472](https://github.com/Cap-go/capacitor-flash/commit/79de47223b5ca440c240a7230564e5a5dae37f2a))
+
 ## [7.1.0](https://github.com/Cap-go/capacitor-flash/compare/7.0.19...7.1.0) (2025-10-23)
 
 
