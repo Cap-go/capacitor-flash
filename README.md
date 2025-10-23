@@ -40,6 +40,7 @@ Works out of the box
 * [`switchOff()`](#switchoff)
 * [`isSwitchedOn()`](#isswitchedon)
 * [`toggle()`](#toggle)
+* [`getPluginVersion()`](#getpluginversion)
 
 </docgen-index>
 
@@ -107,6 +108,19 @@ toggle() => Promise<{ value: boolean; }>
 Toggle the flashlight
 
 **Returns:** <code>Promise&lt;{ value: boolean; }&gt;</code>
+
+--------------------
+
+
+### getPluginVersion()
+
+```typescript
+getPluginVersion() => Promise<{ version: string; }>
+```
+
+Get the native Capacitor plugin version
+
+**Returns:** <code>Promise&lt;{ version: string; }&gt;</code>
 
 --------------------
 
