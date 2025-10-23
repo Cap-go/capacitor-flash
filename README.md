@@ -47,15 +47,19 @@ Works out of the box
 <docgen-api>
 <!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
 
+Capacitor Flash Plugin for controlling device flashlight/torch.
+
 ### isAvailable()
 
 ```typescript
 isAvailable() => Promise<{ value: boolean; }>
 ```
 
-Checks if flashlight is available
+Checks if flashlight is available on the device.
 
 **Returns:** <code>Promise&lt;{ value: boolean; }&gt;</code>
+
+**Since:** 1.0.0
 
 --------------------
 
@@ -66,11 +70,13 @@ Checks if flashlight is available
 switchOn(options: { intensity?: number; }) => Promise<void>
 ```
 
-Turns the flashlight on
+Turns the flashlight on.
 
-| Param         | Type                                 |
-| ------------- | ------------------------------------ |
-| **`options`** | <code>{ intensity?: number; }</code> |
+| Param         | Type                                 | Description                                        |
+| ------------- | ------------------------------------ | -------------------------------------------------- |
+| **`options`** | <code>{ intensity?: number; }</code> | - Optional configuration including light intensity |
+
+**Since:** 1.0.0
 
 --------------------
 
@@ -81,7 +87,9 @@ Turns the flashlight on
 switchOff() => Promise<void>
 ```
 
-Turns the flashlight off
+Turns the flashlight off.
+
+**Since:** 1.0.0
 
 --------------------
 
@@ -92,9 +100,11 @@ Turns the flashlight off
 isSwitchedOn() => Promise<{ value: boolean; }>
 ```
 
-Checks if the flashlight is turned on or off
+Checks if the flashlight is currently turned on or off.
 
 **Returns:** <code>Promise&lt;{ value: boolean; }&gt;</code>
+
+**Since:** 1.0.0
 
 --------------------
 
@@ -105,9 +115,11 @@ Checks if the flashlight is turned on or off
 toggle() => Promise<{ value: boolean; }>
 ```
 
-Toggle the flashlight
+Toggle the flashlight on or off.
 
 **Returns:** <code>Promise&lt;{ value: boolean; }&gt;</code>
+
+**Since:** 1.0.0
 
 --------------------
 
@@ -118,9 +130,11 @@ Toggle the flashlight
 getPluginVersion() => Promise<{ version: string; }>
 ```
 
-Get the native Capacitor plugin version
+Get the native Capacitor plugin version.
 
 **Returns:** <code>Promise&lt;{ version: string; }&gt;</code>
+
+**Since:** 1.0.0
 
 --------------------
 
