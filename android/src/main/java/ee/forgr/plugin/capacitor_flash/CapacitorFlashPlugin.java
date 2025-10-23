@@ -19,7 +19,7 @@ import com.getcapacitor.annotation.PermissionCallback;
 @CapacitorPlugin(name = "CapacitorFlash", permissions = { @Permission(alias = "camera", strings = { Manifest.permission.CAMERA }) })
 public class CapacitorFlashPlugin extends Plugin {
 
-    private final String PLUGIN_VERSION = "7.1.1";
+    private final String PLUGIN_VERSION = "7.1.2";
 
     private String cameraId;
     boolean isFlashStateOn = false;
