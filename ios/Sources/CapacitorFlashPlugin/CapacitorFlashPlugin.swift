@@ -7,6 +7,7 @@ import Capacitor
  */
 @objc(CapacitorFlashPlugin)
 public class CapacitorFlashPlugin: CAPPlugin, CAPBridgedPlugin {
+    private let PLUGIN_VERSION: String = ""
     public let identifier = "CapacitorFlashPlugin"
     public let jsName = "CapacitorFlash"
     public let pluginMethods: [CAPPluginMethod] = [
@@ -14,7 +15,8 @@ public class CapacitorFlashPlugin: CAPPlugin, CAPBridgedPlugin {
         CAPPluginMethod(name: "switchOn", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "switchOff", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "isSwitchedOn", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "toggle", returnType: CAPPluginReturnPromise)
+        CAPPluginMethod(name: "toggle", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "getPluginVersion", returnType: CAPPluginReturnPromise)
     ]
 
     private let implementation = CapacitorFlash()
@@ -49,4 +51,9 @@ public class CapacitorFlashPlugin: CAPPlugin, CAPBridgedPlugin {
             "value": implementation.toggle()
         ])
     }
+
+    @objc func getPluginVersion(_ call: CAPPluginCall) {
+        call.resolve(["version": self.PLUGIN_VERSION])
+    }
+
 }

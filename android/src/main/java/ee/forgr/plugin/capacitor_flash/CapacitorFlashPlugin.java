@@ -19,6 +19,8 @@ import com.getcapacitor.annotation.PermissionCallback;
 @CapacitorPlugin(name = "CapacitorFlash", permissions = { @Permission(alias = "camera", strings = { Manifest.permission.CAMERA }) })
 public class CapacitorFlashPlugin extends Plugin {
 
+    private final String PLUGIN_VERSION = "";
+
     private String cameraId;
     boolean isFlashStateOn = false;
 
@@ -129,5 +131,16 @@ public class CapacitorFlashPlugin extends Plugin {
             ret.put("value", false);
         }
         call.resolve(ret);
+    }
+
+    @PluginMethod
+    public void getPluginVersion(final PluginCall call) {
+        try {
+            final JSObject ret = new JSObject();
+            ret.put("version", this.PLUGIN_VERSION);
+            call.resolve(ret);
+        } catch (final Exception e) {
+            call.reject("Could not get plugin version", e);
+        }
     }
 }

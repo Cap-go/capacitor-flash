@@ -23,4 +23,8 @@ export class CapacitorFlashWeb extends WebPlugin implements CapacitorFlashPlugin
   toggle(): Promise<{ value: boolean }> {
     throw new Error('Method not implemented.');
   }
+
+  async getPluginVersion(): Promise<{ version: string }> {
+    return { version: 'web' };
+  }
 }
