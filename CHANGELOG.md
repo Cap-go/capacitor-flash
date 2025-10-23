@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [7.1.0](https://github.com/Cap-go/capacitor-flash/compare/7.0.19...7.1.0) (2025-10-23)
+
+
+### Features
+
+* add getPluginVersion method to CapacitorFlash plugin and web implementation ([ef26e8b](https://github.com/Cap-go/capacitor-flash/commit/ef26e8b4144204d12fc9653ffc1a88717f9d2c9f))
+
+
+### Bug Fixes
+
+* remove content field from Discord release notification ([bc58f4e](https://github.com/Cap-go/capacitor-flash/commit/bc58f4ea7270a302426835a18ad8c4f0324bf820))
+
 ## [7.0.19](https://github.com/Cap-go/capacitor-flash/compare/7.0.18...7.0.19) (2025-10-16)
 
 ## [7.0.18](https://github.com/Cap-go/capacitor-flash/compare/7.0.17...7.0.18) (2025-10-15)
