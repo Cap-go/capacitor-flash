@@ -7,6 +7,10 @@
 </div>
 Switch the Flashlight / Torch of your device.
 
+## Documentation
+
+The most complete doc is available here: https://capgo.app/docs/plugins/flash/
+
 ## Install
 
 ```bash
