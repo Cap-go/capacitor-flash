@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [7.1.4](https://github.com/Cap-go/capacitor-flash/compare/7.1.3...7.1.4) (2025-10-26)
+
 ## [7.1.3](https://github.com/Cap-go/capacitor-flash/compare/7.1.2...7.1.3) (2025-10-26)
 
 
