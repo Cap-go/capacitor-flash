@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [7.1.5](https://github.com/Cap-go/capacitor-flash/compare/7.1.4...7.1.5) (2025-10-26)
+
+
+### Bug Fixes
+
+* prevent bump for app ([b681368](https://github.com/Cap-go/capacitor-flash/commit/b681368da0e88dd35598c4a56a66a61bffb91d82))
+
 ## [7.1.4](https://github.com/Cap-go/capacitor-flash/compare/7.1.3...7.1.4) (2025-10-26)
 
 ## [7.1.3](https://github.com/Cap-go/capacitor-flash/compare/7.1.2...7.1.3) (2025-10-26)
