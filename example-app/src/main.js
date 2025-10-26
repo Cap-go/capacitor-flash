@@ -35,7 +35,7 @@ return { toggled: value };
               run: async (values) => {
                 const intensity = Number.isNaN(Number(values.intensity)) ? 1 : Number(values.intensity);
 await plugin.switchOn({ intensity });
-return \`Requested to enable flash at intensity ${intensity}.\`;
+return `Requested to enable flash at intensity ${intensity}.`;
               },
             },
 {
