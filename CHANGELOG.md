@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [7.1.8](https://github.com/Cap-go/capacitor-flash/compare/7.1.7...7.1.8) (2025-10-29)
+
+
+### Bug Fixes
+
+* CI/CD config ([88bf60f](https://github.com/Cap-go/capacitor-flash/commit/88bf60ffdeff779957033efe55cb7d1b3a8dfac3))
+* update AI model in build workflow ([12ad064](https://github.com/Cap-go/capacitor-flash/commit/12ad064d532440eae1e746ec4abbac102784ddc0))
+* update github action ([22a2403](https://github.com/Cap-go/capacitor-flash/commit/22a240394f4a4f70e04ea32e7037485982713e9d))
+
 ## [7.1.7](https://github.com/Cap-go/capacitor-flash/compare/7.1.6...7.1.7) (2025-10-27)
 
 
