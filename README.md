@@ -7,6 +7,19 @@
 </div>
 Switch the Flashlight / Torch of your device.
 
+## Why Capacitor Flash?
+
+A simple, **free**, and **lightweight** flashlight control plugin:
+
+- **Intensity control** - Adjust brightness levels (iOS with configurable intensity)
+- **Status checking** - Query flashlight availability and current state
+- **Toggle support** - Simple on/off switching with toggle method
+- **Universal compatibility** - Works across all iOS and Android devices with flash hardware
+- **Modern package management** - Supports both Swift Package Manager (SPM) and CocoaPods (SPM-ready for Capacitor 8)
+- **Zero dependencies** - Minimal footprint, no bloat
+
+Perfect for QR scanner apps, emergency torch features, camera apps, and utility tools.
+
 ## Documentation
 
 The most complete doc is available here: https://capgo.app/docs/plugins/flash/
