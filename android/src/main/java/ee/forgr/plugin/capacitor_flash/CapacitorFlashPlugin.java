@@ -68,7 +68,7 @@ public class CapacitorFlashPlugin extends Plugin {
     @RequiresApi(api = Build.VERSION_CODES.M)
     @PluginMethod
     public void switchOn(PluginCall call) {
-        String value = call.getString("instensity"); // cannot be use in android
+        Float intensity = call.getFloat("intensity", 1.0f);
         JSObject ret = new JSObject();
         if (cameraManager == null) {
             ret.put("value", false);
@@ -76,7 +76,13 @@ public class CapacitorFlashPlugin extends Plugin {
             return;
         }
         try {
-            cameraManager.setTorchMode(cameraId, true);
+            // Android 13+ (API 33) supports torch brightness control
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                switchOnWithIntensity(intensity);
+            } else {
+                // For older Android versions, only on/off is supported
+                cameraManager.setTorchMode(cameraId, true);
+            }
             isFlashStateOn = true;
             ret.put("value", true);
         } catch (Exception e) {
@@ -84,6 +90,33 @@ public class CapacitorFlashPlugin extends Plugin {
             ret.put("value", false);
         }
         call.resolve(ret);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
+    private void switchOnWithIntensity(Float intensity) throws CameraAccessException {
+        // Clamp intensity between 0.0 and 1.0
+        float clampedIntensity = Math.max(0.0f, Math.min(1.0f, intensity));
+
+        // Get max torch strength level using reflection for API 33+ compatibility
+        try {
+            // CameraCharacteristics.FLASH_INFO_STRENGTH_MAX_LEVEL is an API 33+ constant
+            java.lang.reflect.Field field = CameraCharacteristics.class.getField("FLASH_INFO_STRENGTH_MAX_LEVEL");
+            CameraCharacteristics.Key<Integer> key = (CameraCharacteristics.Key<Integer>) field.get(null);
+            Integer maxLevel = cameraManager.getCameraCharacteristics(cameraId).get(key);
+
+            if (maxLevel != null && maxLevel > 1) {
+                // Convert 0.0-1.0 range to device's torch level range (1 to maxLevel)
+                // Level 1 is minimum brightness, maxLevel is maximum
+                int torchLevel = Math.max(1, Math.round(clampedIntensity * maxLevel));
+                cameraManager.turnOnTorchWithStrengthLevel(cameraId, torchLevel);
+            } else {
+                // Fallback if max level is not available
+                cameraManager.setTorchMode(cameraId, true);
+            }
+        } catch (Exception e) {
+            // If reflection fails, fall back to simple on mode
+            cameraManager.setTorchMode(cameraId, true);
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
