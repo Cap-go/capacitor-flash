@@ -43,12 +43,12 @@ public class CapacitorFlashPlugin extends Plugin {
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.M && getPermissionState("camera") != PermissionState.GRANTED) {
             requestPermissionForAlias("camera", call, "cameraPermsCallback");
         } else {
-            getAvailibility(call);
+            getAvailability(call);
         }
     }
 
     @PermissionCallback
-    private void getAvailibility(PluginCall call) {
+    private void getAvailability(PluginCall call) {
         JSObject ret = new JSObject();
         if (cameraManager == null) {
             ret.put("value", false);
