@@ -7,7 +7,7 @@ import Capacitor
  */
 @objc(CapacitorFlashPlugin)
 public class CapacitorFlashPlugin: CAPPlugin, CAPBridgedPlugin {
-    private let pluginVersion: String = "7.1.16"
+    private let pluginVersion: String = "7.1.17"
     public let identifier = "CapacitorFlashPlugin"
     public let jsName = "CapacitorFlash"
     public let pluginMethods: [CAPPluginMethod] = [
