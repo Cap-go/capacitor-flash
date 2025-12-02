@@ -11,10 +11,10 @@ Switch the Flashlight / Torch of your device.
 
 A simple, **free**, and **lightweight** flashlight control plugin:
 
-- **Intensity control** - Adjust brightness levels (iOS with configurable intensity)
+- **Intensity control** - Adjust brightness levels (iOS and Android 13+)
 - **Status checking** - Query flashlight availability and current state
 - **Toggle support** - Simple on/off switching with toggle method
-- **Universal compatibility** - Works across all iOS and Android devices with flash hardware
+- **Universal compatibility** - Works across iOS, Android, and web (Chrome on mobile devices)
 - **Modern package management** - Supports both Swift Package Manager (SPM) and CocoaPods (SPM-ready for Capacitor 8)
 - **Zero dependencies** - Minimal footprint, no bloat
 
@@ -37,16 +37,17 @@ Works out of the box
 
 ## Android
 
-1. Declare permissions in your app's `AndroidManifest.xml` file
+Works out of the box. No permissions are required since the `CameraManager.setTorchMode()` API (introduced in Android 6.0) does not require camera permission.
+
+Optionally, you can declare the flash hardware feature in your `AndroidManifest.xml`:
 
 ```xml
-<!-- Permissions: Allows access to flashlight -->
-<uses-permission android:name="android.permission.CAMERA" android:maxSdkVersion="23" />
-<uses-permission android:name="android.permission.FLASHLIGHT" />
-
-<!-- Actual Hardware Features Used-->
-<uses-feature android:name="android.hardware.camera.flash" android:required="true" />
+<uses-feature android:name="android.hardware.camera.flash" android:required="false" />
 ```
+
+## Web
+
+Works in Chrome and Chromium-based browsers on mobile devices. Uses the MediaDevices API with torch constraint. Call `isAvailable()` first to check if torch control is supported on the current browser/device.
 
 ## API
 
