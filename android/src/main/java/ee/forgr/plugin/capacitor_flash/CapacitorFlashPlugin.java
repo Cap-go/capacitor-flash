@@ -15,7 +15,7 @@ import com.getcapacitor.annotation.CapacitorPlugin;
 @CapacitorPlugin(name = "CapacitorFlash")
 public class CapacitorFlashPlugin extends Plugin {
 
-    private final String pluginVersion = "7.1.23";
+    private final String pluginVersion = "7.1.24";
 
     private String cameraId;
     boolean isFlashStateOn = false;
