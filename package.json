@@ -24,6 +24,7 @@
   "bugs": {
     "url": "https://github.com/Cap-go/capacitor-flash/issues"
   },
+  "homepage": "https://capgo.app/docs/plugins/flash/",
   "keywords": [
     "capacitor",
     "flashlight",
