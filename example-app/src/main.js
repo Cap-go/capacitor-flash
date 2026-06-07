@@ -7,49 +7,48 @@ import { CapacitorFlash } from '@capgo/capacitor-flash';
 const plugin = CapacitorFlash;
 const state = {};
 
-
 const actions = [
-{
-              id: 'check-availability',
-              label: 'Check availability',
-              description: 'Calls isAvailable() to determine if the device exposes a torch.',
-              inputs: [],
-              run: async (values) => {
-                const { value } = await plugin.isAvailable();
-return { available: value };
-              },
-            },
-{
-              id: 'toggle',
-              label: 'Toggle flash',
-              description: 'Toggles the flashlight state. Requires native platform with torch hardware.',
-              inputs: [],
-              run: async (values) => {
-                const { value } = await plugin.toggle();
-return { toggled: value };
-              },
-            },
-{
-              id: 'switch-on',
-              label: 'Switch on with intensity',
-              description: 'Turns on the flashlight with the specified intensity.',
-              inputs: [{ name: 'intensity', label: 'Intensity (0.0 - 1.0)', type: 'number', value: 1 }],
-              run: async (values) => {
-                const intensity = Number.isNaN(Number(values.intensity)) ? 1 : Number(values.intensity);
-await plugin.switchOn({ intensity });
-return `Requested to enable flash at intensity ${intensity}.`;
-              },
-            },
-{
-              id: 'switch-off',
-              label: 'Switch off',
-              description: 'Turns the flashlight off.',
-              inputs: [],
-              run: async (values) => {
-                await plugin.switchOff();
-return 'Requested to turn the flashlight off.';
-              },
-            }
+  {
+    id: 'check-availability',
+    label: 'Check availability',
+    description: 'Calls isAvailable() to determine if the device exposes a torch.',
+    inputs: [],
+    run: async (values) => {
+      const { value } = await plugin.isAvailable();
+      return { available: value };
+    },
+  },
+  {
+    id: 'toggle',
+    label: 'Toggle flash',
+    description: 'Toggles the flashlight state. Requires native platform with torch hardware.',
+    inputs: [],
+    run: async (values) => {
+      const { value } = await plugin.toggle();
+      return { toggled: value };
+    },
+  },
+  {
+    id: 'switch-on',
+    label: 'Switch on with intensity',
+    description: 'Turns on the flashlight with the specified intensity.',
+    inputs: [{ name: 'intensity', label: 'Intensity (0.0 - 1.0)', type: 'number', value: 1 }],
+    run: async (values) => {
+      const intensity = Number.isNaN(Number(values.intensity)) ? 1 : Number(values.intensity);
+      await plugin.switchOn({ intensity });
+      return `Requested to enable flash at intensity ${intensity}.`;
+    },
+  },
+  {
+    id: 'switch-off',
+    label: 'Switch off',
+    description: 'Turns the flashlight off.',
+    inputs: [],
+    run: async (values) => {
+      await plugin.switchOff();
+      return 'Requested to turn the flashlight off.';
+    },
+  },
 ];
 
 const actionSelect = document.getElementById('action-select');
