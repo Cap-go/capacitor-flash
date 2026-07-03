@@ -4,7 +4,7 @@ import pkg from './package.json';
 
 const config: CapacitorConfig = {
   appId: 'app.capgo.flash',
-  appName: 'Flash Example',
+  appName: '@capgo/capacitor-flash',
   webDir: 'dist',
   plugins: {
     SplashScreen: {
