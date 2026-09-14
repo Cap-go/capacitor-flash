@@ -101,22 +101,7 @@ function parseArgs(argv) {
 
 const args = parseArgs(process.argv);
 const pluginDir = args.dir;
-const pkgPath = path.join(pluginDir, "package.json");
-
-if (!exists(pkgPath)) {
-  console.error(`[wiring] ERROR: missing package.json in ${pluginDir}`);
-  process.exit(2);
-}
-
-let pkg;
-try {
-  pkg = JSON.parse(readText(pkgPath));
-} catch (e) {
-  console.error(`[wiring] ERROR: invalid package.json (${pkgPath}): ${e?.message || e}`);
-  process.exit(2);
-}
-
-const cap = typeof pkg.capacitor === "object" && pkg.capacitor ? pkg.capacitor : {};
+const { cap } = loadCapacitorPluginPackage({ root: pluginDir, readText, exists }, "wiring");
 const supportsAndroid = typeof cap.android === "object" && cap.android;
 const supportsIos = typeof cap.ios === "object" && cap.ios;
 

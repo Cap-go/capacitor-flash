@@ -106,6 +106,26 @@ function collectScanRoots(pluginDir, cap, fsApi) {
   return roots;
 }
 
+function codePortionForScan(line) {
+  let portion = line;
+  const slashComment = portion.indexOf("//");
+  if (slashComment >= 0) portion = portion.slice(0, slashComment);
+  portion = portion.replace(/"(?:\\.|[^"\\])*"/g, "");
+  portion = portion.replace(/'(?:\\.|[^'\\])*'/g, "");
+  portion = portion.replace(/`(?:\\.|[^`\\])*`/g, "");
+  return portion;
+}
+
+function isCommentOnlyLine(line) {
+  const trimmed = line.trim();
+  return (
+    trimmed.startsWith("//") ||
+    trimmed.startsWith("*") ||
+    trimmed.startsWith("/*") ||
+    trimmed.startsWith("*/")
+  );
+}
+
 function scanFile(filePath, rule, readText) {
   const ext = path.extname(filePath);
   if (!rule.exts.includes(ext)) return [];
@@ -118,8 +138,10 @@ function scanFile(filePath, rule, readText) {
     if (filePath.endsWith("Package.swift") && CORDova_SPM_LINE.test(line)) {
       continue;
     }
+    if (isCommentOnlyLine(line)) continue;
     if (rule.ignoreLine?.test(line)) continue;
-    if (rule.pattern.test(line)) {
+    const code = codePortionForScan(line);
+    if (rule.pattern.test(code)) {
       hits.push({ line: i + 1, text: line.trim() });
     }
   }
