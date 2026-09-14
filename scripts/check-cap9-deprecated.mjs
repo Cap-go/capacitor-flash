@@ -11,19 +11,9 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { DEFAULT_SKIP_DIR_NAMES, exists, readText, walkFiles } from "./lib/plugin-check-fs.mjs";
 
-const SKIP_DIRS = new Set([
-  "node_modules",
-  "dist",
-  "build",
-  ".build",
-  ".gradle",
-  "Pods",
-  "DerivedData",
-  ".swiftpm",
-  ".git",
-  "example-app",
-]);
+const SKIP_DIRS = [...DEFAULT_SKIP_DIR_NAMES, "example-app"];
 
 /** @type {{ id: string, pattern: RegExp, exts: string[], ignoreLine?: RegExp }[]} */
 const RULES = [
@@ -93,53 +83,6 @@ const RULES = [
 const CORDova_SPM_LINE =
   /\.product\s*\(\s*name\s*:\s*"Cordova"\s*,\s*package\s*:\s*"capacitor-swift-pm"\s*\)/;
 
-function readText(p) {
-  try {
-    return fs.readFileSync(p, "utf8");
-  } catch {
-    return "";
-  }
-}
-
-function exists(p) {
-  try {
-    fs.accessSync(p);
-    return true;
-  } catch {
-    return false;
-  }
-}
-
-function walkFiles(rootDir, exts) {
-  const out = [];
-  const stack = [rootDir];
-  while (stack.length) {
-    const dir = stack.pop();
-    let entries;
-    try {
-      entries = fs.readdirSync(dir, { withFileTypes: true });
-    } catch {
-      continue;
-    }
-    for (const e of entries) {
-      if (e.isDirectory()) {
-        if (SKIP_DIRS.has(e.name)) continue;
-        stack.push(path.join(dir, e.name));
-        continue;
-      }
-      if (!e.isFile()) continue;
-      for (const ext of exts) {
-        if (e.name.endsWith(ext)) {
-          out.push(path.join(dir, e.name));
-          break;
-        }
-      }
-    }
-  }
-  out.sort();
-  return out;
-}
-
 function collectScanRoots(pluginDir, pkg) {
   const cap = typeof pkg.capacitor === "object" && pkg.capacitor ? pkg.capacitor : {};
   const roots = [];
@@ -201,7 +144,7 @@ if (!cap.android && !cap.ios) {
   process.exit(0);
 }
 
-const scanRoots = collectScanRoots(pluginDir, cap);
+const scanRoots = collectScanRoots(pluginDir, pkg);
 const allExts = [...new Set(RULES.flatMap((r) => r.exts))];
 const files = [];
 for (const root of scanRoots) {
@@ -209,7 +152,7 @@ for (const root of scanRoots) {
     files.push(root);
     continue;
   }
-  files.push(...walkFiles(root, allExts));
+  files.push(...walkFiles(root, allExts, SKIP_DIRS));
 }
 
 const violations = [];
