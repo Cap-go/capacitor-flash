@@ -10,10 +10,10 @@
  */
 
 import path from "node:path";
+import { loadCapacitorPluginPackage } from "./lib/load-plugin-package.mjs";
 import {
   createPluginFs,
   DEFAULT_SKIP_DIR_NAMES,
-  loadCapacitorPluginPackage,
   resolveCwdPluginDir,
 } from "./lib/plugin-check-fs.mjs";
 
