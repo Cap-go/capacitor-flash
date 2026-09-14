@@ -5,19 +5,25 @@
  * Fails when plugin native sources still use APIs removed in Capacitor 9.
  * Does not flag Cordova SwiftPM product dependencies (still required on Cap 8).
  *
- * Usage:
+ * Usage (run from plugin repository root):
  *   node scripts/check-cap9-deprecated.mjs
- *   node scripts/check-cap9-deprecated.mjs --dir path
  */
 
+import fs from "node:fs";
 import path from "node:path";
-import {
-  createPluginFs,
-  DEFAULT_SKIP_DIRS,
-  parsePluginDirArg,
-} from "./lib/plugin-check-fs.mjs";
 
-const SKIP_DIRS = [...DEFAULT_SKIP_DIRS, "example-app"];
+const SKIP_DIRS = new Set([
+  "node_modules",
+  "dist",
+  "build",
+  ".build",
+  ".gradle",
+  "Pods",
+  "DerivedData",
+  ".swiftpm",
+  ".git",
+  "example-app",
+]);
 
 /** @type {{ id: string, pattern: RegExp, exts: string[], ignoreLine?: RegExp }[]} */
 const RULES = [
@@ -87,27 +93,74 @@ const RULES = [
 const CORDova_SPM_LINE =
   /\.product\s*\(\s*name\s*:\s*"Cordova"\s*,\s*package\s*:\s*"capacitor-swift-pm"\s*\)/;
 
-function collectScanRoots(pluginDir, pkg, fsApi) {
+function readText(p) {
+  try {
+    return fs.readFileSync(p, "utf8");
+  } catch {
+    return "";
+  }
+}
+
+function exists(p) {
+  try {
+    fs.accessSync(p);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function walkFiles(rootDir, exts) {
+  const out = [];
+  const stack = [rootDir];
+  while (stack.length) {
+    const dir = stack.pop();
+    let entries;
+    try {
+      entries = fs.readdirSync(dir, { withFileTypes: true });
+    } catch {
+      continue;
+    }
+    for (const e of entries) {
+      if (e.isDirectory()) {
+        if (SKIP_DIRS.has(e.name)) continue;
+        stack.push(path.join(dir, e.name));
+        continue;
+      }
+      if (!e.isFile()) continue;
+      for (const ext of exts) {
+        if (e.name.endsWith(ext)) {
+          out.push(path.join(dir, e.name));
+          break;
+        }
+      }
+    }
+  }
+  out.sort();
+  return out;
+}
+
+function collectScanRoots(pluginDir, pkg) {
   const cap = typeof pkg.capacitor === "object" && pkg.capacitor ? pkg.capacitor : {};
   const roots = [];
   if (cap.android) {
     const androidMain = path.join(pluginDir, "android", "src", "main");
-    if (fsApi.exists(androidMain)) roots.push(androidMain);
+    if (exists(androidMain)) roots.push(androidMain);
   }
   if (cap.ios) {
     const iosSources = path.join(pluginDir, "ios", "Sources");
-    if (fsApi.exists(iosSources)) roots.push(iosSources);
+    if (exists(iosSources)) roots.push(iosSources);
     else {
       const iosDir = path.join(pluginDir, "ios");
-      if (fsApi.exists(iosDir)) roots.push(iosDir);
+      if (exists(iosDir)) roots.push(iosDir);
     }
   }
   const packageSwift = path.join(pluginDir, "Package.swift");
-  if (fsApi.exists(packageSwift)) roots.push(packageSwift);
+  if (exists(packageSwift)) roots.push(packageSwift);
   return roots;
 }
 
-function scanFile(filePath, rule, readText) {
+function scanFile(filePath, rule) {
   const ext = path.extname(filePath);
   if (!rule.exts.includes(ext)) return [];
 
@@ -127,18 +180,17 @@ function scanFile(filePath, rule, readText) {
   return hits;
 }
 
-const pluginDir = parsePluginDirArg(process.argv, "cap9-deprecated");
-const fsApi = createPluginFs(pluginDir);
+const pluginDir = fs.realpathSync(process.cwd());
 const pkgPath = path.join(pluginDir, "package.json");
 
-if (!fsApi.exists(pkgPath)) {
+if (!exists(pkgPath)) {
   console.error(`[cap9-deprecated] ERROR: missing package.json in ${pluginDir}`);
   process.exit(2);
 }
 
 let pkg;
 try {
-  pkg = JSON.parse(fsApi.readText(pkgPath));
+  pkg = JSON.parse(readText(pkgPath));
 } catch (e) {
   console.error(`[cap9-deprecated] ERROR: invalid package.json (${pkgPath}): ${e?.message || e}`);
   process.exit(2);
@@ -149,7 +201,7 @@ if (!cap.android && !cap.ios) {
   process.exit(0);
 }
 
-const scanRoots = collectScanRoots(pluginDir, pkg, fsApi);
+const scanRoots = collectScanRoots(pluginDir, cap);
 const allExts = [...new Set(RULES.flatMap((r) => r.exts))];
 const files = [];
 for (const root of scanRoots) {
@@ -157,13 +209,13 @@ for (const root of scanRoots) {
     files.push(root);
     continue;
   }
-  files.push(...fsApi.walkFiles(root, allExts, SKIP_DIRS));
+  files.push(...walkFiles(root, allExts));
 }
 
 const violations = [];
 for (const file of files) {
   for (const rule of RULES) {
-    const hits = scanFile(file, rule, fsApi.readText.bind(fsApi));
+    const hits = scanFile(file, rule);
     for (const hit of hits) {
       violations.push({
         rule: rule.id,
