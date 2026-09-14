@@ -106,6 +106,34 @@ function collectScanRoots(pluginDir, cap, fsApi) {
   return roots;
 }
 
+function stripBlockCommentsFromLine(line, inBlockComment) {
+  let code = "";
+  let inside = inBlockComment;
+  let i = 0;
+  while (i < line.length) {
+    if (inside) {
+      const end = line.indexOf("*/", i);
+      if (end === -1) return { code, inBlockComment: true };
+      inside = false;
+      i = end + 2;
+      continue;
+    }
+    const start = line.indexOf("/*", i);
+    if (start === -1) {
+      code += line.slice(i);
+      break;
+    }
+    code += line.slice(i, start);
+    const end = line.indexOf("*/", start + 2);
+    if (end === -1) {
+      inside = true;
+      break;
+    }
+    i = end + 2;
+  }
+  return { code, inBlockComment: inside };
+}
+
 function codePortionForScan(line) {
   let portion = line;
   const slashComment = portion.indexOf("//");
@@ -116,16 +144,6 @@ function codePortionForScan(line) {
   return portion;
 }
 
-function isCommentOnlyLine(line) {
-  const trimmed = line.trim();
-  return (
-    trimmed.startsWith("//") ||
-    trimmed.startsWith("*") ||
-    trimmed.startsWith("/*") ||
-    trimmed.startsWith("*/")
-  );
-}
-
 function scanFile(filePath, rule, readText) {
   const ext = path.extname(filePath);
   if (!rule.exts.includes(ext)) return [];
@@ -133,14 +151,17 @@ function scanFile(filePath, rule, readText) {
   const txt = readText(filePath);
   const lines = txt.split(/\r?\n/);
   const hits = [];
+  let inBlockComment = false;
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
     if (filePath.endsWith("Package.swift") && CORDova_SPM_LINE.test(line)) {
       continue;
     }
-    if (isCommentOnlyLine(line)) continue;
     if (rule.ignoreLine?.test(line)) continue;
-    const code = codePortionForScan(line);
+    const stripped = stripBlockCommentsFromLine(line, inBlockComment);
+    inBlockComment = stripped.inBlockComment;
+    const code = codePortionForScan(stripped.code);
+    if (!code.trim()) continue;
     if (rule.pattern.test(code)) {
       hits.push({ line: i + 1, text: line.trim() });
     }
