@@ -9,9 +9,13 @@
  *   node scripts/check-cap9-deprecated.mjs
  */
 
-import fs from "node:fs";
 import path from "node:path";
-import { DEFAULT_SKIP_DIR_NAMES, exists, readText, walkFiles } from "./lib/plugin-check-fs.mjs";
+import {
+  createPluginFs,
+  DEFAULT_SKIP_DIR_NAMES,
+  loadCapacitorPluginPackage,
+  resolveCwdPluginDir,
+} from "./lib/plugin-check-fs.mjs";
 
 const SKIP_DIRS = [...DEFAULT_SKIP_DIR_NAMES, "example-app"];
 
@@ -83,27 +87,26 @@ const RULES = [
 const CORDova_SPM_LINE =
   /\.product\s*\(\s*name\s*:\s*"Cordova"\s*,\s*package\s*:\s*"capacitor-swift-pm"\s*\)/;
 
-function collectScanRoots(pluginDir, pkg) {
-  const cap = typeof pkg.capacitor === "object" && pkg.capacitor ? pkg.capacitor : {};
+function collectScanRoots(pluginDir, cap, fsApi) {
   const roots = [];
   if (cap.android) {
     const androidMain = path.join(pluginDir, "android", "src", "main");
-    if (exists(androidMain)) roots.push(androidMain);
+    if (fsApi.exists(androidMain)) roots.push(androidMain);
   }
   if (cap.ios) {
     const iosSources = path.join(pluginDir, "ios", "Sources");
-    if (exists(iosSources)) roots.push(iosSources);
+    if (fsApi.exists(iosSources)) roots.push(iosSources);
     else {
       const iosDir = path.join(pluginDir, "ios");
-      if (exists(iosDir)) roots.push(iosDir);
+      if (fsApi.exists(iosDir)) roots.push(iosDir);
     }
   }
   const packageSwift = path.join(pluginDir, "Package.swift");
-  if (exists(packageSwift)) roots.push(packageSwift);
+  if (fsApi.exists(packageSwift)) roots.push(packageSwift);
   return roots;
 }
 
-function scanFile(filePath, rule) {
+function scanFile(filePath, rule, readText) {
   const ext = path.extname(filePath);
   if (!rule.exts.includes(ext)) return [];
 
@@ -123,28 +126,15 @@ function scanFile(filePath, rule) {
   return hits;
 }
 
-const pluginDir = fs.realpathSync(process.cwd());
-const pkgPath = path.join(pluginDir, "package.json");
+const fsApi = createPluginFs(resolveCwdPluginDir());
+const { cap } = loadCapacitorPluginPackage(fsApi, "cap9-deprecated");
+const pluginDir = fsApi.root;
 
-if (!exists(pkgPath)) {
-  console.error(`[cap9-deprecated] ERROR: missing package.json in ${pluginDir}`);
-  process.exit(2);
-}
-
-let pkg;
-try {
-  pkg = JSON.parse(readText(pkgPath));
-} catch (e) {
-  console.error(`[cap9-deprecated] ERROR: invalid package.json (${pkgPath}): ${e?.message || e}`);
-  process.exit(2);
-}
-
-const cap = typeof pkg.capacitor === "object" && pkg.capacitor ? pkg.capacitor : {};
 if (!cap.android && !cap.ios) {
   process.exit(0);
 }
 
-const scanRoots = collectScanRoots(pluginDir, pkg);
+const scanRoots = collectScanRoots(pluginDir, cap, fsApi);
 const allExts = [...new Set(RULES.flatMap((r) => r.exts))];
 const files = [];
 for (const root of scanRoots) {
@@ -152,13 +142,13 @@ for (const root of scanRoots) {
     files.push(root);
     continue;
   }
-  files.push(...walkFiles(root, allExts, SKIP_DIRS));
+  files.push(...fsApi.walkFiles(root, allExts, SKIP_DIRS));
 }
 
 const violations = [];
 for (const file of files) {
   for (const rule of RULES) {
-    const hits = scanFile(file, rule);
+    const hits = scanFile(file, rule, fsApi.readText.bind(fsApi));
     for (const hit of hits) {
       violations.push({
         rule: rule.id,
