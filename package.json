@@ -1,6 +1,6 @@
 {
   "name": "@capgo/capacitor-flash",
-  "version": "8.0.39",
+  "version": "8.0.40",
   "description": "Switch the Flashlight / Torch of your device.",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
