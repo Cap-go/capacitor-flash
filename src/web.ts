@@ -50,7 +50,9 @@ export class CapacitorFlashWeb extends WebPlugin implements CapacitorFlashPlugin
       });
       this.torchOn = true;
     } catch (e) {
-      throw new Error(`Failed to switch on torch: ${e}`);
+      const error = new Error(`Failed to switch on torch: ${e}`);
+      (error as Error & { cause?: unknown }).cause = e;
+      throw error;
     }
   }
 
@@ -66,7 +68,9 @@ export class CapacitorFlashWeb extends WebPlugin implements CapacitorFlashPlugin
       }
       this.torchOn = false;
     } catch (e) {
-      throw new Error(`Failed to switch off torch: ${e}`);
+      const error = new Error(`Failed to switch off torch: ${e}`);
+      (error as Error & { cause?: unknown }).cause = e;
+      throw error;
     }
   }
 
