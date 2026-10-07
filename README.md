@@ -17,7 +17,7 @@ Turn the device flashlight on and off from your Capacitor app, with brightness c
 
 ## Key features
 
-- **On and off**: `switchOn()`, `switchOff()` and `toggle()`.
+- **On and off**: `switchOn({})`, `switchOff()` and `toggle()`.
 - **Intensity**: pass `intensity` to `switchOn()` on supported devices.
 - **State**: `isSwitchedOn()` reports whether the torch is on.
 - **Availability**: `isAvailable()` checks for a flashlight first.
