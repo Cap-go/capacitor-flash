@@ -1,11 +1,27 @@
 # capacitor-flash
-<a href="https://capgo.app/"><img src="https://capgo.app/readme-banner.svg?repo=Cap-go/capacitor-flash" alt="Capgo - Instant updates for Capacitor" /></a>
+
+Turn the device flashlight on and off from your Capacitor app, with brightness control where the hardware allows it.
+
+<a href="https://capgo.app/?ref=plugin_flash"><img src="https://capgo.app/readme-banner.svg?repo=Cap-go/capacitor-flash" alt="Capgo - Instant updates for Capacitor" /></a>
 
 <div align="center">
-  <h2><a href="https://capgo.app/?ref=plugin_flash"> ➡️ Get Instant updates for your App with Capgo</a></h2>
-  <h2><a href="https://capgo.app/consulting/?ref=plugin_flash"> Missing a feature? We’ll build the plugin for you 💪</a></h2>
+  <p><b>Capgo</b>: open-source live updates for Ionic and Capacitor apps. Ship OTA fixes and features instantly, without waiting for app store review.</p>
+  <h2><a href="https://capgo.app/register/?ref=plugin_flash">➡️ Get started for free</a></h2>
+  <p>14-day unlimited free trial. No credit card required</p>
+  <p><a href="https://capgo.app/consulting/?ref=plugin_flash">Missing a feature? We'll build the plugin for you 💪</a></p>
 </div>
-Switch the Flashlight / Torch of your device.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Cap-go/capacitor-flash/main/assets/github-social-preview.png" alt="@capgo/capacitor-flash for Capacitor apps" width="300" />
+</p>
+
+## Key features
+
+- **On and off**: `switchOn({})`, `switchOff()` and `toggle()`.
+- **Intensity**: pass `intensity` to `switchOn()` on supported devices.
+- **State**: `isSwitchedOn()` reports whether the torch is on.
+- **Availability**: `isAvailable()` checks for a flashlight first.
+- **Platforms**: iOS, Android and Web. iOS uses AVFoundation, Android uses Camera2. Web uses the camera torch where the browser allows it.
 
 ## Why Capacitor Flash?
 
